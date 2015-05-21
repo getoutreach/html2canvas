@@ -753,6 +753,17 @@ function getBorderRadiusData(container) {
         if (arr.length <= 1) {
             arr[1] = arr[0];
         }
+
+        // Check for percentage radius and get relative values 
+        if(value.indexOf('%')>=0)
+        {
+            var currentVal = parseInt(arr[0]);
+            if(!isNaN(currentVal)){
+                arr[0] = container.bounds.width * currentVal / 100;
+                arr[1] = container.bounds.height * currentVal / 100; 
+            }           
+        }  
+
         return arr.map(asInt);
     });
 }
